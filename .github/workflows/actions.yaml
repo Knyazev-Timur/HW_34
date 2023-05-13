@@ -1,0 +1,57 @@
+name: Build and deploy workflow
+on:
+  push:
+    branches:
+      - master
+      - develop
+      - HW34
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: clone code
+        uses: actions/checkout@v3
+      - name: docker build
+        run: docker build -t Knyazev-Timur/HW_34/tree/master/CW_7:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
+      - name: docker login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN  }}
+      - name: docker push
+        run: docker push Knyazev-Timur/HW_34/tree/master/CW_7:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build_and_push
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      POSTGRES_PASSWORD: ${{ secret.POSTGRES_PASSWORD }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+    steps:
+      - name: clone code
+        uses: actions/checkout@v3
+      - name: render configs
+        run: |
+          mkdir deploy_ci
+          cat deploy/docker-compose-ci.yami | envsubst > deploy_ci/docker-compose.yaml
+          cat deploy/.env | envsubst > deploy_ci/.env
+      - name: copy files to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secret.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: "deploi_ci/docker-compose.yaml,doploy_ci/.env"
+          target: "todolist"
+          strip_components: 1"
+      - name: deploy app
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secret.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd todolist
+            docker-compose down
+            docker-compose up -d
