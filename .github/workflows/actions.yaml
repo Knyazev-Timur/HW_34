@@ -39,7 +39,7 @@ jobs:
       - name: copy files to server
         uses: appleboy/ssh-action@master
         with:
-#          host: ${{ secrets.HOST }}
+          host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           source: "deploi_ci/docker-compose.yaml,doploy_ci/.env"
@@ -48,7 +48,7 @@ jobs:
       - name: deploy app
         uses: appleboy/ssh-action@master
         with:
-#          host: ${{ secrets.HOST }}
+          host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
