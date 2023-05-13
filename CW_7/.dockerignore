@@ -1,0 +1,9 @@
+**
+
+!core
+!core/migrations/
+!todolist
+!manage.py
+!requirements.txt
+!Dockerfile
+!.env.dev
