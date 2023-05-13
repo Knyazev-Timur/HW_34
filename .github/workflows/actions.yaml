@@ -12,8 +12,8 @@ jobs:
     steps:
       - name: clone code
         uses: actions/checkout@v3
-      - name: docker build
-        run: docker build -t Knyazev-Timur/HW_34/CW_7:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
+      - name: docker building
+        run: docker build -t .../...:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
       - name: docker login
         uses: docker/login-action@v2
         with:
