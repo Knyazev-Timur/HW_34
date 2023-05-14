@@ -12,7 +12,7 @@ services:
 
 
   api:
-    image: https://github.com/Knyazev-Timur/HW_34/CW_7:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    image: Knyazev-Timur/HW_34/CW_7:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     restart: always
     depends_on:
       db:
@@ -24,7 +24,7 @@ services:
 
 
   migrations:
-    image: https://github.com/Knyazev-Timur/HW_34/CW_7:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    image: Knyazev-Timur/HW_34/CW_7:$GITHUB_REF_NAME-$GITHUB_RUN_ID
 
     depends_on:
       db:
