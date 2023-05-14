@@ -12,7 +12,7 @@ services:
 
 
   api:
-    image: charfull/cw_7:${GIT_HUB_REF_NAME}-${GIT_HUB_RUN_ID}
+    image: charfull/cw_7/hw34:${GIT_HUB_REF_NAME}-${GIT_HUB_RUN_ID}
     restart: always
     depends_on:
       db:
@@ -24,7 +24,7 @@ services:
 
 
   migrations:
-    image: charfull/cw_7:${GIT_HUB_REF_NAME}-${GIT_HUB_RUN_ID}
+    image: charfull/cw_7/hw34:${GIT_HUB_REF_NAME}-${GIT_HUB_RUN_ID}
 
     depends_on:
       db:
