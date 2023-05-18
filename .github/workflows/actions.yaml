@@ -52,6 +52,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            cd todolist
+            cd CW_7
             docker-compose down
             docker-compose up -d
