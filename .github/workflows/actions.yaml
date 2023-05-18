@@ -41,7 +41,7 @@ jobs:
         with:
           run: |
             mkdir todolist
-            cat deploy/docker-compose-ci.yami | envsubst > todolist/docker-compose.yaml
+            cat docker-compose-ci.yami | envsubst > todolist/docker-compose.yaml
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
