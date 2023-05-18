@@ -57,5 +57,5 @@ jobs:
           script: |
             cd todolist
             docker-compose down
-            sudo -S docker-compose up -d
+            sudo docker-compose up -d
 #            docker-compose up -d
