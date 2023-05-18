@@ -39,6 +39,8 @@ jobs:
       - name: copy files to server
         uses: appleboy/ssh-action@master
         with:
+          run: |
+            mkdir todolist
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
@@ -52,6 +54,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            cd deploy_ci
+            cd todolist
             docker-compose down
             docker-compose up -d
