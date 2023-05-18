@@ -34,8 +34,8 @@ jobs:
       - name: render configs
         run: |
           mkdir deploy_ci
-          cat docker-compose-ci.yami | envsubst > deploy_ci/docker-compose.yaml
-          cat .env | envsubst > deploy_ci/.env
+          cat ./docker-compose-ci.yami | envsubst > deploy_ci/docker-compose.yaml
+          cat ./.env | envsubst > deploy_ci/.env
       - name: copy files to server
         uses: appleboy/ssh-action@master
         with:
