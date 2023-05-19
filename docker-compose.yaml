@@ -21,22 +21,7 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
-    # Рестарт я делал уже на деплой на сервер
-    # restart: always
-#    env_file:
-#      - ./../.env
-#      - .:/app/.env # тут по суте должен быть путь который указан в Dockerfile
-    # Для работы с переменным окружением
-#    environment:
-#      SQL_DB_HOST: db
-#      SQL_DB_PORT: 5432
-#      SQL_DB_NAME: postgres
-#      SQL_DB_USER: postgres
-#      SQL_DB_PASSWORD: postgres
-      # SECRET_KEY: ${SECRET_KEY}
-#      DEBUG: ${DEBUG}
-#      SOCIAL_AUTH_VK_OAUTH2_KEY: ${SOCIAL_AUTH_VK_OAUTH2_KEY}
-#      SOCIAL_AUTH_VK_OAUTH2_SECRET: ${SOCIAL_AUTH_VK_OAUTH2_SECRET}
+
     depends_on:
       db:
         condition: service_healthy
