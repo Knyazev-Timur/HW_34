@@ -65,7 +65,7 @@ jobs:
           host: ${{ secrets.HOST}}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
-          source: "deploy/*"
+          source: "deploy_ci/*"
           target: "todolist"
           strip_components: 1
 
