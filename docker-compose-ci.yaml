@@ -12,7 +12,7 @@ services:
 
 
   api:
-    image: charfull/cw_7:${GIT_HUB_REF_NAME}-${GIT_HUB_RUN_ID}
+#    image: charfull/cw_7:${GIT_HUB_REF_NAME}-${GIT_HUB_RUN_ID}
     image: charfull/cw_7:${{ secrets.GIT_HUB_REF_NAME }}
     restart: always
     depends_on:
