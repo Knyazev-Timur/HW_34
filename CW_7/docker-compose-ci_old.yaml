@@ -1,0 +1,58 @@
+version: "3.9"
+
+services:
+  frontend:
+    image: sermalenk/skypro-front:lesson-34
+    container_name: frontend
+    ports:
+      - "80:80"
+    restart: always
+    depends_on:
+      - api
+
+
+  api:
+#    image: charfull/cw_7:${GIT_HUB_REF_NAME}-${GIT_HUB_RUN_ID}
+    image: charfull/cw_7:${{ secrets.GIT_HUB_REF_NAME }} .
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+      migrations:
+        condition: service_completed_successfully
+    ports:
+        - "8000:8000"
+
+
+  migrations:
+#    image: charfull/cw_7:${GIT_HUB_REF_NAME}-${GIT_HUB_RUN_ID}
+    image: charfull/cw_7:${{ secrets.GIT_HUB_REF_NAME }}
+
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "python ./manage.py migrate"
+
+  db:
+    # Использование готового образа postgres
+    image: postgres:latest
+    # Задание переменных окружения для контейнера с postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    restart: always
+     # Связывание тома с директорией в контейнере для сохранения данных postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data/
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      # test: ["CMD-SHELL", "pg_isready -U ${SQL_DB_USER} -d ${SQL_DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+
+volumes:
+  db_data:

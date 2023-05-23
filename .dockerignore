@@ -1,0 +1,12 @@
+**
+
+!CW_7/**
+!core
+!core/migrations/
+!todolist
+!manage.py
+!requirements.txt
+!Dockerfile
+!docker-compose-ci.yaml
+!.env.dev
+
