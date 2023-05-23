@@ -16,7 +16,7 @@ services:
 #    image: charfull/cw_7:${GIT_HUB_REF_NAME}-${GIT_HUB_RUN_ID}
     networks:
       - my-network
-    image: charfull/cw_7:${{ secrets.GIT_HUB_REF_NAME }}-${GIT_HUB_RUN_ID}
+    image: charfull/cw_7:${{GIT_HUB_REF_NAME }}-${GIT_HUB_RUN_ID}
     restart: always
     env_file:
       - .env
@@ -31,7 +31,7 @@ services:
     networks:
       - my-network
 #    image: charfull/cw_7:${GIT_HUB_REF_NAME}-${GIT_HUB_RUN_ID}
-    image: charfull/cw_7:${{ secrets.GIT_HUB_REF_NAME }}-${GIT_HUB_RUN_ID}
+    image: charfull/cw_7:${{GIT_HUB_REF_NAME }}-${GIT_HUB_RUN_ID}
     depends_on:
       db:
         condition: service_healthy
