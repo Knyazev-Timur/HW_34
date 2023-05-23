@@ -19,7 +19,7 @@ services:
     image: charfull/cw_7:${{ secrets.GIT_HUB_REF_NAME }}
     restart: always
     env_file:
-      - .env.dev
+      - .env
     depends_on:
       db:
         condition: service_healthy
