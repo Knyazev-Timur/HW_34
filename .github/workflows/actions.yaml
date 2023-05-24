@@ -65,16 +65,16 @@ jobs:
           target: "todolist"
           strip_components: 1
 
-      - name: deploy app
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          script: |
-            cd todolist
-            docker-compose down
-            docker-compose up -d
+#      - name: deploy app
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{ secrets.HOST }}
+#          username: ${{ secrets.SSH_USER }}
+#          password: ${{ secrets.SSH_PASSWORD }}
+#          script: |
+#            cd todolist
+#            docker compose down
+#            docker compose up -d
 
       - name: Cleanup
         if: always()
