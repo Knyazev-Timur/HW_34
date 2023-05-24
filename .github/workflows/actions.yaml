@@ -72,10 +72,9 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            cd deploy_ci
-            echo ${{ secrets.SSH_PASSWORD }} | sudo -S docker compose up -d
-#            docker compose down
-#            docker compose up -d
+            cd todolist
+            docker compose down
+            docker compose up -d
 
       - name: Cleanup
         if: always()
