@@ -23,7 +23,7 @@ jobs:
           target: prod_image
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/cw_7:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
+          tags: ${{ secrets.DOCKER_USERNAME }}/cw_7:$GITHUB_REF_NAME-$GITHUB_RUN_ID
 
   deploy:
     runs-on: ubuntu-latest
