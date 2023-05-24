@@ -41,7 +41,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build
+    needs: build_and_push
     env:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
