@@ -9,4 +9,5 @@
 !Dockerfile
 !docker-compose-ci.yaml
 !.env.dev
+¡.env
 
